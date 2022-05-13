@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="FailToBindToResources.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FailToBindToResources"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <!-- Simple bind case -->
+    <!--<Page.Resources>
+        <ResourceDictionary>
+            --><!-- This is the resource dict of Page --><!--
+            <ResourceDictionary x:Name="buttonResNormal">
+                <SolidColorBrush x:Key="ButtonBackground" Color="Red"/>
+            </ResourceDictionary>
+            <ResourceDictionary x:Name="buttonResAccent">
+                <StaticResource x:Key="ButtonBackground" ResourceKey="SystemAccentColor"/>
+            </ResourceDictionary>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Button x:Name="button1" Resources="{x:Bind ButtonRes, Mode=OneWay}"/>
+    --><!-- This triggers runtime crash --><!--
+    <Button x:Name="button2" Resources="{x:Bind ButtonRes, Mode=OneWay}"/>-->
+    
+    <!-- Setter case -->
+    <!--<Page.Resources>
+        <ResourceDictionary>
+            <Setter x:Name="normal">
+                <Setter.Value>
+                    <ResourceDictionary>
+                        <SolidColorBrush x:Key="ButtonBackground" Color="Red"/>
+                    </ResourceDictionary>
+                </Setter.Value>
+            </Setter>
+            <Setter x:Name="accent">
+                <Setter.Value>
+                    <ResourceDictionary>
+                        <StaticResource x:Key="ButtonBackground" ResourceKey="SystemAccentColor"/>
+                    </ResourceDictionary>
+                </Setter.Value>
+            </Setter>
+        </ResourceDictionary>
+    </Page.Resources>
+    <StackPanel>
+        <Button x:Name="button" Resources="{x:Bind ButtonRes, Mode=OneWay}"/>
+        <Button x:Name="button2" Resources="{x:Bind ButtonRes, Mode=OneWay}"/>
+    </StackPanel>-->
+    
+    <StackPanel x:Name="panel">
+        <Button x:Name="button" Content="Click me" Click="button_Click">
+            <Button.Resources>
+                <ResourceDictionary Source="{x:Bind ButtonResSource, Mode=OneWay}"/>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2" Content="Click me" Click="button_Click"/>
+    </StackPanel>
+</Page>
